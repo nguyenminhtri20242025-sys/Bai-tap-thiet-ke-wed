@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <title>Kinh Nghiệm - System Trace</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+  <style>
+    /* REUSE CORE STYLE FROM YOUR DESIGN */
+    body { 
+      font-family: 'Segoe UI', sans-serif; 
+      background-color: #01080e; 
+      background-image: 
+        linear-gradient(rgba(0, 242, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 242, 255, 0.05) 1px, transparent 1px);
+      background-size: 40px 40px;
+      color: #00f2ff;
+      overflow-x: hidden;
+    }
+
+    /* SIDEBAR */
+    .sidenav {
+      background: rgba(2, 12, 27, 0.95);
+      height: 100vh;
+      padding: 30px 15px;
+      position: fixed;
+      width: 25%;
+      border-right: 2px solid #00f2ff;
+      box-shadow: 15px 0 35px rgba(0, 242, 255, 0.1);
+      z-index: 1000;
+    }
+
+    .sidenav h3 { 
+      color: #fff; text-align: center; text-shadow: 0 0 10px #00f2ff;
+      border-bottom: 2px solid #00f2ff; padding-bottom: 15px; text-transform: uppercase;
+    }
+
+    .sidenav a {
+      display: block; color: #64ffda; padding: 15px; margin: 15px 0;
+      text-decoration: none; background: rgba(0, 242, 255, 0.05);
+      clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0% 30%);
+      transition: all 0.4s ease;
+    }
+
+    .sidenav a:hover, .active {
+      background: rgba(0, 242, 255, 0.25) !important;
+      color: #fff !important; border-left: 5px solid #00f2ff;
+    }
+
+    /* MAIN CONTENT */
+    .content { margin-left: 27%; padding: 60px 40px; }
+
+    .title-tech {
+      font-size: 28px; color: #fff; text-transform: uppercase;
+      display: block; margin-bottom: 40px;
+      text-shadow: 2px 2px #ff0055, -2px -2px #00f2ff;
+    }
+
+    /* TIMELINE DESIGN */
+    .timeline {
+      border-left: 2px solid #00f2ff;
+      padding-left: 30px;
+      position: relative;
+    }
+
+    .timeline-item {
+      background: rgba(0, 30, 50, 0.4);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(0, 242, 255, 0.3);
+      padding: 20px;
+      margin-bottom: 30px;
+      position: relative;
+      transition: 0.3s;
+    }
+
+    .timeline-item:hover {
+      border-color: #ff0055;
+      transform: translateX(10px);
+      box-shadow: 0 0 20px rgba(255, 0, 85, 0.2);
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -41px;
+      top: 20px;
+      width: 20px;
+      height: 20px;
+      background: #01080e;
+      border: 3px solid #00f2ff;
+      border-radius: 50%;
+    }
+
+    .time-period {
+      font-family: monospace;
+      color: #ff0055;
+      font-weight: bold;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .job-title {
+      font-size: 20px;
+      color: #fff;
+      font-weight: bold;
+    }
+
+    .company-name {
+      color: #00f2ff;
+      font-style: italic;
+      margin-bottom: 15px;
+      display: block;
+    }
+
+    .task-list {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .task-list li::before {
+      content: "> ";
+      color: #00f2ff;
+    }
+
+    .task-list li {
+      color: #a0aec0;
+      margin-bottom: 5px;
+    }
+    .status-tag {
+      float: right;
+      font-size: 10px;
+      background: #00f2ff;
+      color: #000;
+      padding: 2px 8px;
+      font-weight: bold;
+    }
+    
+    
+    .task-image {
+      width: 100%;
+      max-width: 600px; 
+      margin-top: 15px;
+      border: 1px solid rgba(0, 242, 255, 0.5);
+      filter: grayscale(0.5) contrast(1.2);
+      transition: 0.3s;
+      border-radius: 8px; 
+    }
+
+    .timeline-item:hover .task-image {
+      filter: grayscale(0);
+      border-color: #ff0055;
+      box-shadow: 0 0 15px rgba(255, 0, 85, 0.3);
+    }
+  </style>
+</head>
+<body>
+
+<div class="sidenav">
+  <h3>Menu</h3>
+  <a href="trangchu.html">Trang chủ</a> <!-- Bỏ bớt 1 class active trùng lặp -->
+  <a href="index.html">Giới thiệu</a>
+  <a href="trainghiem.html">Trải nghiệm</a>
+  <a href="kinhnghiem.html" class="active">Kinh nghiệm</a>
+  <a href="hoatdong.html">Hoạt động</a>
+  <a href="khenthuong.html">Khen thưởng</a>
+</div>
+
+<div class="content">
+  <span class="title-tech">Execution Logs: Work Experience</span>
+
+  <div class="timeline">
+    
+    <!-- ITEM 1 -->
+    <div class="timeline-item">
+      <span class="status-tag">COMPLETED</span>
+      <span class="time-period">2026</span>
+      <div class="job-title">Làm bài thơ</div>
+      <div class="company-name">Dự án cá nhân</div>
+      <ul class="task-list">
+        <li>Sáng tác các bài thơ ngắn về công nghệ.</li>
+        <li>Thiết kế giao diện hiển thị thơ .</li>
+      </ul>
+      
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhaHDyOs4AEaeiMlf47Avab20KLfZgJduoCcQoy2q-qi8YqvM1i5aiSZpJEF9DlpBGejuVQshAxkIy4J_YtJeDF9gsXQ8-YNzhWH0FczwlqZfQAtWDlD5gqCfFbsx2ObExmx5vtwqS6rrJghyC8OFLk4UzJdbOsDX0tyIvvUWb0qUZ6JZIBicuvnk0NSKKb/s1912/df51d33b-1e9f-473b-8def-e8408d7fc875.jpg" alt="hình ảnh" class="task-image">
+    </div>
+
+    <!-- ITEM 2 -->
+    <div class="timeline-item">
+      <span class="status-tag">ARCHIVED</span>
+      <span class="time-period">2026</span>
+      <div class="job-title">Làm web nhạc</div>
+      <div class="company-name">Dự án học tập</div>
+      <ul class="task-list">
+        <li>Xây dựng trình phát nhạc trực tuyến bằng HTML/CSS/JS.</li>
+        <li>Tích hợp danh sách phát nhạc đa dạng.</li>
+      </ul>
+      
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjBNvKe-J2xbf-1UYQpXf39o6FKhaRdEK5R-cSNv-LsizGQ9GwY2pOsmBysugP230vi-8ke_7Od_NnI9LSgR2x3Za6_8LplEtokKqII6aoOodo3oyybPMoxWjs9ypMJ66BGAVz_1bzyhROcmQGyEfhWh9fp9qumIkWtTXnW4Lff6KO87IpDRKFf3jMrqarN/s1920/876af6f9-8a8e-4ad9-ae47-4e307b642ac3.jpg" alt="hình ảnh" class="task-image">
+    </div>
+
+    <!-- ITEM 3 -->
+    <div class="timeline-item">
+      <span class="status-tag">ARCHIVED</span>
+      <span class="time-period">2026</span>
+      <div class="job-title">Trang web giới thiệu bản thân</div>
+      <div class="company-name">Dự án cá nhân</div>
+      <ul class="task-list">
+        <li>Thiết kế Portfolio cá nhân .</li>
+        <li>Tối ưu hóa hiển thị trên các thiết bị di động.</li>
+      </ul>
+      
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEil3ufxJnlKaxWRd4SkTE_qVScPElaRCWDO_xvZnE-D6voGrSlNd52aBE-TGICnEIWr64uxDUYWeB3gytmtKEGvk9uWIDIpY6OS26ESke2vSIFJ_71V5cxXdHS5dZmEnsxRjVf9CBEwSdip3Pl5UCVnpwIWNj8oj2bJVW0f_wdx8d27hkrguDbG4ahVcBgn/s1920/ec2ee175-5cc3-402c-be0a-f7b93f4e2361.jpg" alt="hình ảnh" class="task-image">
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

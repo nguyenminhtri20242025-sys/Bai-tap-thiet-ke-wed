@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <title>Trãi nghiệm</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+  <style>
+    /* 1. THIẾT LẬP NỀN GRID CHUYỂN ĐỘNG */
+    body { 
+      font-family: 'Segoe UI', 'Orbitron', sans-serif; 
+      background-color: #01080e; 
+      background-image: 
+        linear-gradient(rgba(0, 242, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 242, 255, 0.05) 1px, transparent 1px);
+      background-size: 40px 40px;
+      color: #00f2ff;
+      overflow-x: hidden;
+      animation: grid-move 20s linear infinite;
+    }
+
+    @keyframes grid-move {
+      from { background-position: 0 0; }
+      to { background-position: 0 40px; }
+    }
+
+    /* 2. HIỆU ỨNG QUÉT MÀN HÌNH (SỬA LỖI CLICK) */
+    body::before {
+      content: " ";
+      position: fixed;
+      top: 0; left: 0; bottom: 0; right: 0;
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
+                  linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+      z-index: 9999;
+      background-size: 100% 3px, 2px 100%;
+      /* QUAN TRỌNG: pointer-events: none giúp bạn click xuyên qua lớp phủ này */
+      pointer-events: none; 
+    }
+
+    /* 3. MENU SIDEBAR CYBER */
+    .sidenav {
+      background: rgba(2, 12, 27, 0.95);
+      height: 100vh;
+      padding: 30px 15px;
+      position: fixed;
+      width: 25%;
+      border-right: 2px solid #00f2ff;
+      box-shadow: 15px 0 35px rgba(0, 242, 255, 0.1);
+      z-index: 1000; /* Đảm bảo menu luôn nằm trên */
+    }
+
+    .sidenav h3 { 
+      color: #fff;
+      font-weight: bold;
+      letter-spacing: 4px;
+      text-align: center;
+      text-shadow: 0 0 10px #00f2ff;
+      border-bottom: 2px solid #00f2ff;
+      padding-bottom: 15px;
+      text-transform: uppercase;
+    }
+
+    .sidenav a {
+      display: block;
+      color: #64ffda;
+      padding: 15px;
+      margin: 15px 0;
+      text-decoration: none;
+      clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0% 30%);
+      background: rgba(0, 242, 255, 0.05);
+      transition: all 0.4s ease;
+      border-left: 0px solid #00f2ff;
+    }
+
+    .sidenav a:hover {
+      background: rgba(0, 242, 255, 0.2);
+      color: #fff;
+      padding-left: 25px;
+      border-left: 5px solid #00f2ff;
+      text-decoration: none;
+    }
+
+    .active { 
+      background: rgba(0, 242, 255, 0.25) !important; 
+      color: #fff !important; 
+      border-left: 5px solid #00f2ff !important;
+      box-shadow: inset 0 0 15px rgba(0, 242, 255, 0.4);
+    }
+
+    /* 4. NỘI DUNG CHÍNH */
+    .content {
+      margin-left: 27%;
+      padding: 60px 40px;
+    }
+    
+    .box {
+      background: rgba(0, 30, 50, 0.4);
+      backdrop-filter: blur(10px);
+      padding: 40px;
+      border: 1px solid rgba(0, 242, 255, 0.3);
+      position: relative;
+    }
+
+    /* Góc trang trí radar */
+    .box::after {
+      content: "";
+      position: absolute;
+      bottom: 0; right: 0;
+      width: 25px; height: 25px;
+      border-bottom: 4px solid #00f2ff;
+      border-right: 4px solid #00f2ff;
+    }
+
+    .title-tech {
+      font-size: 26px;
+      color: #fff;
+      text-transform: uppercase;
+      margin-bottom: 30px;
+      display: inline-block;
+      text-shadow: 2px 2px #ff0055, -2px -2px #00f2ff;
+      animation: glitch-subtle 3s infinite;
+    }
+
+    @keyframes glitch-subtle {
+      0% { transform: translate(0); }
+      2% { transform: translate(-2px, 1px); }
+      4% { transform: translate(2px, -1px); }
+      6% { transform: translate(0); }
+    }
+
+    /* 5. HIỆU ỨNG HOLOGRAM */
+    .hologram-display {
+      position: relative;
+      border: 1px solid #00f2ff;
+      background: #000;
+      margin: 30px 0;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
+    }
+    @keyframes scan-move {
+      0% { top: 0%; }
+      100% { top: 100%; }
+    }
+
+    .experience-img {
+      width: 100%;
+      height: 450px;
+      object-fit: cover;
+      opacity: 0.8;
+      filter: brightness(1.1) contrast(1.1) sepia(20%) hue-rotate(140deg);
+      transition: 0.5s;
+    }
+
+    .hologram-display:hover .experience-img {
+      filter: none;
+      opacity: 1;
+      transform: scale(1.02);
+    }
+
+    /* 6. KỸ NĂNG & STATUS */
+    .status-bar {
+      font-family: monospace;
+      font-size: 12px;
+      background: #00f2ff;
+      color: #000;
+      padding: 3px 12px;
+      display: inline-block;
+      margin-bottom: 15px;
+      font-weight: bold;
+      clip-path: polygon(0 0, 100% 0, 90% 100%, 0% 100%);
+    }
+
+    .skills-tech { padding: 0; list-style: none; }
+    .skills-tech li {
+      background: rgba(0, 242, 255, 0.05);
+      margin-bottom: 12px;
+      padding: 15px;
+      border-left: 4px solid #00f2ff;
+      color: #e0e0e0;
+      transition: 0.3s;
+    }
+
+    .skills-tech li:hover {
+      background: rgba(0, 242, 255, 0.15);
+      border-left: 4px solid #ff0055;
+      transform: translateX(10px);
+      color: #fff;
+    }
+
+    .skills-tech b { color: #00f2ff; }
+  </style>
+</head>
+<body>
+
+<div class="sidenav">
+ <h3>Menu</h3>
+ <a href="trangchu.html" class="active">Trang chủ</a>
+  <a href="index.html" class="active">Giới thiệu</a>
+  <a href="trainghiem.html">Trãi nghiệm</a>
+  <a href="kinhnghiem.html">Kinh nghiệm</a>
+  <a href="hoatdong.html">Hoạt động</a>
+  <a href="khenthuong.html">Khen thưởng</a>
+</div>
+
+<!-- NỘI DUNG CHÍNH -->
+<div class="content">
+  <div class="box">
+    <div class="status-bar">Trãi nghiệm ngành học</div>
+    <br>
+    <span class="title-tech">Analysis: Educational Experience</span>
+    
+    <p class="description" style="line-height: 1.8; font-size: 16px; color: #a0aec0;">
+    Trong suốt quá trình học tập tại ngành Công nghệ thông tin, tôi đã có cơ hội tiếp cận với nhiều công nghệ hiện đại.
+    Những buổi thực hành trên phòng Lab và các dự án nhóm đã giúp tôi hiểu rõ hơn về quy trình phát triển phần mềm thực tế.
+    Mỗi dòng code viết ra như một nét vẽ tỉ mỉ trên bức tranh sự nghiệp tương lai.
+    </p>
+
+    <!-- MÀN HÌNH CHIẾU DỮ LIỆU HOLOGRAM -->
+    <div class="hologram-display">
+      <div class="scanner-line"></div>
+      <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97" alt="Exp data" class="experience-img">
+      <div style="position: absolute; bottom: 0; width: 100%; background: rgba(0,242,255,0.2); text-align: center; padding: 5px; font-family: monospace;">
+        [ TRÌNH CHIẾU DỮ LIỆU: PHÂN ĐOẠN_HỌC_TẬP_01 ]
+      </div>
+    </div>
+
+    <hr style="border-top: 1px solid rgba(0, 242, 255, 0.2);">
+    
+    <span class="title-tech" style="font-size: 18px;">Kỹ năng có được:</span>
+    <ul class="skills-tech">
+      <li><b>Tư duy logic:</b> Khả năng phân tích bài toán.</li>
+      <li><b>Khả năng làm việc nhóm:</b>Sự phối hợp nhịp nhàng để tạo nên một tác phẩm hoàn chỉnh.</li>
+      <li><b>Tự nghiên cứu:</b>  Khát khao tìm tòi những công nghệ mới nhất.</li>
+    </ul>
+  </div>
+</div>
+
+</body>
+</html>

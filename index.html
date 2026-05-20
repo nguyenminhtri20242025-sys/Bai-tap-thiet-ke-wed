@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <title>Giới thiệu trang web</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+  <style>
+    /* NỀN CÔNG NGHỆ TỐI */
+    body { 
+      font-family: 'Segoe UI', 'Orbitron', sans-serif; 
+      background-color: #050b14; 
+      background-image: 
+        linear-gradient(rgba(0, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 255, 0.05) 1px, transparent 1px);
+      background-size: 30px 30px; /* Hiệu ứng lưới điện tử */
+      color: #00f2ff;
+      overflow-x: hidden;
+    }
+
+    /* MENU TRÁI - CYBER PANEL */
+    .sidenav {
+      background: rgba(10, 20, 35, 0.95);
+      height: 100vh;
+      padding: 30px 15px;
+      position: fixed;
+      width: 25%;
+      border-right: 2px solid #00f2ff;
+      box-shadow: 5px 0 20px rgba(0, 242, 255, 0.2);
+    }
+    .sidenav h3 { 
+      color: #fff;
+      font-weight: bold;
+      text-transform: uppercase;
+      text-align: center;
+      letter-spacing: 3px;
+      margin-bottom: 40px;
+      text-shadow: 0 0 10px #00f2ff;
+    }
+    .sidenav a {
+      display: block;
+      color: #64ffda;
+      padding: 15px;
+      margin-bottom: 10px;
+      text-decoration: none;
+      transition: all 0.4s;
+      border: 1px solid transparent;
+      clip-path: polygon(0% 0%, 90% 0%, 100% 30%, 100% 100%, 0% 100%); /* Cắt góc công nghệ */
+    }
+    .sidenav a:hover, .active { 
+      background: rgba(0, 242, 255, 0.1) !important; 
+      color: #fff !important; 
+      border: 1px solid #00f2ff !important;
+      box-shadow: inset 0 0 15px rgba(0, 242, 255, 0.4);
+      padding-left: 25px;
+    }
+
+    /* NỘI DUNG BÊN PHẢI */
+    .content {
+      margin-left: 27%;
+      padding: 40px;
+    }
+    
+    /* BOX KÍNH CƯỜNG LỰC (GLASSMORPHISM) */
+    .box {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(10px);
+      padding: 40px;
+      border: 1px solid rgba(0, 242, 255, 0.3);
+      border-radius: 0 20px 0 20px;
+      margin-bottom: 40px;
+      position: relative;
+      transition: 0.3s;
+    }
+    .box:hover {
+      box-shadow: 0 0 30px rgba(0, 242, 255, 0.15);
+      border-color: #00f2ff;
+    }
+
+    /* TIÊU ĐỀ SCANNER */
+    .title-paint {
+      font-size: 24px;
+      color: #fff;
+      text-transform: uppercase;
+      border-left: 5px solid #00f2ff;
+      padding-left: 15px;
+      margin-bottom: 25px;
+      display: block;
+      text-shadow: 0 0 5px #00f2ff;
+    }
+
+    /* BỐ CỤC THÔNG TIN */
+    .row-flex {
+      display: flex;
+      align-items: center;
+      gap: 50px;
+      flex-wrap: wrap;
+    }
+
+    .avatar-container { 
+      flex: 1; 
+      position: relative;
+    }
+    .avatar-img {
+      width: 100%;
+      max-width: 280px;
+      border-radius: 10px;
+      filter: brightness(1.05);
+      box-shadow: 0 0 20px rgba(244, 248, 248, 0.3);
+    }
+    /* Hiệu ứng radar chạy qua ảnh */
+    .avatar-container::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 2px;
+      background: #00f2ff;
+      animation: scan 3s infinite linear;
+      box-shadow: 0 0 10px #00f2ff;
+    }
+
+    @keyframes scan {
+      0% { top: 0; }
+      100% { top: 100%; }
+    }
+
+    .info-table { width: 100%; font-size: 16px; color: #fff; }
+    .info-table td { padding: 15px 5px; border-bottom: 1px solid rgba(0, 242, 255, 0.1); }
+    .info-label { color: #00f2ff; width: 35%; text-transform: uppercase; font-size: 13px; }
+
+    p.description {
+      line-height: 1.8;
+      color: #a0aec0;
+    }
+
+    /* CHỮ KÝ SỐ */
+    .signature {
+      text-align: right;
+      font-family: 'Courier New', monospace;
+      font-size: 18px;
+      color: #00f2ff;
+      margin-top: 20px;
+      letter-spacing: 2px;
+    }
+
+    /* CUSTOM STYLE  */
+    .cyber-form .form-group {
+      margin-bottom: 20px;
+    }
+    .cyber-form label {
+      color: #00f2ff;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .cyber-input {
+      width: 100%;
+      background: rgba(10, 20, 35, 0.6) !important;
+      border: 1px solid rgba(0, 242, 255, 0.4) !important;
+      color: #fff !important;
+      padding: 12px 15px;
+      font-size: 15px;
+      border-radius: 4px;
+      transition: all 0.3s;
+    }
+    .cyber-input:focus {
+      outline: none;
+      border-color: #00f2ff !important;
+      box-shadow: 0 0 12px rgba(0, 242, 255, 0.5);
+    }
+    .cyber-btn {
+      background: transparent;
+      border: 1px solid #00f2ff;
+      color: #00f2ff;
+      padding: 12px 30px;
+      text-transform: uppercase;
+      font-weight: bold;
+      letter-spacing: 2px;
+      transition: all 0.4s;
+      cursor: pointer;
+      clip-path: polygon(0 0, 85% 0, 100% 35%, 100% 100%, 0 100%);
+    }
+    .cyber-btn:hover {
+      background: rgba(0, 242, 255, 0.2);
+      box-shadow: 0 0 15px rgba(0, 242, 255, 0.6);
+      color: #fff;
+    }
+    .success-alert {
+      text-align: center;
+      padding: 40px 20px;
+    }
+    .success-alert h4 {
+      color: #64ffda;
+      font-size: 22px;
+      text-shadow: 0 0 10px rgba(100, 255, 218, 0.5);
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="sidenav">
+  <h3>Menu</h3>
+  <a href="trangchu.html">Trang chủ</a>
+  <a href="index.html" class="active">Giới thiệu</a>
+  <a href="trainghiem.html">Trải nghiệm</a>
+  <a href="kinhnghiem.html">Kinh nghiệm</a>
+  <a href="hoatdong.html">Hoạt động</a>
+  <a href="khenthuong.html">Khen thưởng</a>
+</div>
+
+<div class="content">
+
+  <!-- PHẦN TỔNG QUAN -->
+  <div class="box">
+    <span class="title-paint">Giới thiệu trang web.</span>
+    <p class="description">
+      Chào mừng bạn đến với [Trang Web]<br>
+      Việc làm chủ công nghệ không chỉ là một kỹ năng, mà là một lợi thế cạnh tranh sống còn. 
+      [Trang Web] được ra đời với sứ mệnh trở thành người bạn đồng hành tin cậy, giúp các bạn sinh viên và những người đam mê IT
+      rút ngắn khoảng cách từ lý thuyết đến thực hành thực tế.
+    </p>
+  </div>
+
+  <!-- PHẦN CHI TIẾT -->
+  <div class="box">
+    <span class="title-paint">Giới thiệu bản thân</span>
+    
+    <div class="row-flex">
+      <!-- KHUNG ẢNH CÔNG NGHỆ -->
+      <div>
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEikXd5wlxPs2AdmMCbZRtnIszjGob9fuWsru9qXqDxahMoMlk7TixMGV7ZDFFzzYBX2Phhio28k0iOHN4BxkfgEeFWfeoO3-yNXgd6w-1CsUce2ki4w1MBjpSrIfx31JBW4m7F21ECj3SG-3RcpD8KBi0AVuKvkmRNN3d0QUAUBI87_HzDIk4zWq7K7k-GA/s1276/att._b6vDD4t60oFGMGN8QA22Rc4UEHaM0OTSjPpDBQUbTM.jpeg" alt="Avatar Digital" class="avatar-img">
+      </div>
+
+      <!-- THÔNG TIN -->
+      <div style="flex: 1.5;">
+        <table class="info-table">
+          <tr>
+            <td class="info-label">Họ và tên:</td>
+            <td><b>Nguyễn Minh Trí</b></td>
+          </tr>
+          <tr>
+            <td class="info-label">Ngành:</td>
+            <td>CÔNG NGHỆ THÔNG TIN</td>
+          </tr>
+          <tr>
+            <td class="info-label">MSSV:</td>
+            <td>110125187</td>
+          </tr>
+          <tr>
+            <td class="info-label">Mã lớp:</td>
+            <td>DA25TTC</td>
+          </tr>
+          <tr>
+            <td class="info-label">Email:</td>
+            <td style="color: #64ffda;">nguyenminhtri20242025@gmail.com</td>
+          </tr>
+          <tr>
+            <td class="info-label">Địa chỉ:</td>
+            <td>VĨNH LONG</td>
+          </tr>
+        </table>
+        <div class="signature">AUTHENTICATED: TRÍ_NGUYỄN</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KHUNG GỬI Ý KIẾN (MỚI THÊM) -->
+  <div class="box" id="opinion-box">
+    <span class="title-paint">Gửi ý kiến đóng góp</span>
+    
+    <form class="cyber-form" onsubmit="return xuLyGuiYKien(event)">
+      <div class="row">
+        <div class="col-md-6 form-group">
+          <label for="hoten">Họ và tên</label>
+          <input type="text" id="hoten" class="cyber-input" placeholder="Nhập họ tên của bạn..." required>
+        </div>
+        <div class="col-md-6 form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" class="cyber-input" placeholder="Nhập địa chỉ email..." required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="chude">Chủ đề</label>
+        <input type="text" id="chude" class="cyber-input" placeholder="Nhập chủ đề ý kiến..." required>
+      </div>
+
+      <div class="form-group">
+        <label for="noidung">Nội dung ý kiến</label>
+        <textarea id="noidung" class="cyber-input" rows="5" placeholder="Nhập nội dung chi tiết tại đây..." required></textarea>
+      </div>
+
+      <div style="text-align: right; margin-top: 25px;">
+        <button type="submit" class="cyber-btn">Gửi ý kiến</button>
+      </div>
+    </form>
+  </div>
+
+</div>
+
+<!-- SCRIPT XỬ LÝ SỰ KIỆN -->
+<script>
+function xuLyGuiYKien(event) {
+  // Ngăn chặn form tải lại trang mặc định
+  event.preventDefault();
+
+  // Lấy dữ liệu bằng getElementById đúng yêu cầu của bạn
+  var hoTen = document.getElementById("hoten").value;
+  var email = document.getElementById("email").value;
+  var chuDe = document.getElementById("chude").value;
+  var noiDung = document.getElementById("noidung").value;
+
+  // Tạo hộp thoại confirm xác nhận gửi
+  var xacNhan = confirm("Bạn có chắc chắn muốn gửi ý kiến đóng góp này không?");
+
+  if (xacNhan == true) {
+    // Nếu chọn Xác nhận (OK) -> Thay đổi cấu trúc box bằng innerHTML
+    var vungChon = document.getElementById("opinion-box");
+    vungChon.innerHTML = `
+      <span class="title-paint">Hệ thống ghi nhận</span>
+      <div class="success-alert">
+        <h4>✔ ĐÃ GỬI THÀNH CÔNG!</h4>
+        <p style="color: #a0aec0; line-height: 1.6;">
+          Cảm ơn <b>${hoTen}</b> đã gửi ý kiến đóng góp về chủ đề <i>"${chuDe}"</i>.<br>
+          Chúng tôi sẽ phản hồi lại bạn qua email <b>${email}</b> trong thời gian sớm nhất.
+        </p>
+      </div>
+    `;
+  } else {
+    // Nếu chọn Hủy (Cancel) -> Chuyển hướng quay về trang index.html
+    window.location.href = "index.html";
+  }
+}
+</script>
+
+</body>
+</html>
