@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập Kỳ thi Tốt nghiệp THPT</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #e4f0fe; /* Màu nền xanh nhạt */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Phần Header ảo (chứa text thay thế logo) */
+        .header {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            margin-top: 20px;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: #0b4594;
+        }
+
+        .header-left i {
+            font-size: 40px;
+        }
+
+        .header-left .title-text {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .header-left .title-top {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .header-left .title-bottom {
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        /* Hình quyển sách chứa form */
+        .book-container {
+            background-color: #ffffff;
+            width: 900px;
+            display: flex;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 50, 150, 0.1);
+            position: relative;
+            z-index: 10;
+            margin-bottom: 40px;
+        }
+
+        /* Tạo đường gấp ở giữa quyển sách */
+        .book-container::after {
+            content: '';
+            position: absolute;
+            top: 5%;
+            bottom: 5%;
+            left: 50%;
+            width: 1px;
+            background: linear-gradient(to bottom, transparent, #e0e0e0, transparent);
+        }
+
+        .page-left, .page-right {
+            flex: 1;
+            padding: 50px 40px;
+        }
+
+        h2 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+        }
+
+        /* Định dạng Form bên trái */
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            color: #333;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .required {
+            color: #e74c3c; /* Dấu * màu đỏ */
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #d9d9d9;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #333;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        input:focus {
+            border-color: #0b4594;
+        }
+
+        /* Icon mắt trong ô mật khẩu */
+        .eye-icon {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #888;
+            cursor: pointer;
+        }
+
+        /* Phần Captcha */
+        .captcha-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .captcha-box {
+            background: repeating-linear-gradient(45deg, #f0f0f0, #f0f0f0 10px, #ffffff 10px, #ffffff 20px);
+            border: 1px solid #d9d9d9;
+            padding: 10px 30px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #5c85d6;
+            letter-spacing: 4px;
+            border-radius: 4px;
+        }
+
+        .refresh-icon {
+            font-size: 20px;
+            color: #333;
+            cursor: pointer;
+        }
+
+        .forgot-link {
+            display: block;
+            font-size: 13px;
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        /* Các nút bấm */
+        .btn {
+            width: 100%;
+            padding: 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            text-align: center;
+            margin-bottom: 15px;
+            transition: 0.2s;
+        }
+
+        .btn-primary {
+            background-color: #1250a6;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #0d3d82;
+        }
+
+        .btn-secondary {
+            background-color: white;
+            color: #1250a6;
+            border: 1px solid #1250a6;
+        }
+
+        .btn-secondary:hover {
+            background-color: #f0f5ff;
+        }
+
+        /* Định dạng Thông báo bên phải */
+        .notice-text {
+            font-size: 13px;
+            color: #444;
+            line-height: 1.6;
+        }
+
+        .notice-text p {
+            margin-bottom: 15px;
+        }
+
+        /* Footer Hotline */
+        .footer {
+            margin-top: auto;
+            margin-bottom: 20px;
+            font-size: 16px;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer span {
+            font-weight: bold;
+        }
+         /* CSS để định vị nút quay về trang chủ */
+        .back-home {
+            position: fixed; /* Cố định vị trí */
+            bottom: 20px;    /* Cách mép dưới 20px */
+            right: 20px;     /* Cách mép phải 20px */
+            background-color: #333; /* Màu nền */
+            color: white;    /* Màu chữ */
+            padding: 10px 15px;
+            text-decoration: none; /* Bỏ gạch chân */
+            border-radius: 5px;    /* Bo góc */
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+            z-index: 1000;   /* Luôn nằm trên các phần tử khác */
+        }
+
+        .back-home:hover {
+            background-color: #555; /* Đổi màu khi di chuột vào */
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-left">
+            <i class="fas fa-graduation-cap"></i>
+            <div class="title-text">
+                <span class="title-top">BỘ GIÁO DỤC VÀ ĐÀO TẠO</span>
+                <span class="title-bottom">KỲ THI TỐT NGHIỆP THPT</span>
+            </div>
+        </div>
+        <div style="font-size: 40px; color: #1250a6;"><i class="far fa-lightbulb"></i></div>
+    </div>
+
+    <div class="book-container">
+        
+        <div class="page-left">
+            <h2>ĐĂNG NHẬP</h2>
+            
+            <div class="form-group">
+                <label>Số CCCD/CMND/ĐDCN <span class="required">(*)</span></label>
+                <input type="text" placeholder="Số CCCD/CMND/ĐDCN">
+            </div>
+
+            <div class="form-group">
+                <label>Mã đăng nhập <span class="required">(*)</span></label>
+                <div class="input-wrapper">
+                    <input type="password" placeholder="Mã đăng nhập">
+                    <i class="far fa-eye eye-icon"></i>
+                </div>
+            </div>
+
+            <div class="captcha-container">
+                <div class="captcha-box">5FJP0</div>
+                <i class="fas fa-sync-alt refresh-icon"></i>
+            </div>
+
+            <div class="form-group">
+                <label>Mã xác nhận <span class="required">(*)</span></label>
+                <input type="text" placeholder="Mã xác nhận">
+            </div>
+
+            <a href="#" class="forgot-link">Quên mã đăng nhập ?</a>
+
+            <button class="btn btn-primary">Đăng nhập</button>
+            <button class="btn btn-secondary">Đăng nhập Cổng dịch vụ công quốc gia</button>
+        </div>
+
+        <div class="page-right">
+            <h2>THÔNG BÁO</h2>
+            <div class="notice-text">
+                <p>Thí sinh đăng ký dự thi (ĐKDT) trực tuyến để xét công nhận tốt nghiệp chính thức trên hệ thống từ ngày 24/04/2026 đến 17h00 ngày 05/05/2026.</p>
+                <p>Thí sinh tự do (đã tốt nghiệp THPT, trung cấp) chỉ đăng ký xét tuyển nộp phiếu đăng ký dự thi để xét tuyển về các điểm TNHS để các điểm TNHS nhập thông tin lên hệ thống từ ngày 1/5/2026 đến ngày 20/5/2026.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <i class="fas fa-phone-volume"></i>
+        <div>Hotline <span>1800 8000</span> nhánh số <span>2</span></div>
+    </div>
+    <!-- Nút quay về trang chủ -->
+<a href="trangchu.html" class="back-home">🏠 Về trang chủ</a>
+</body>
+</html>
