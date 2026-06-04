@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Thế Giới Di Động</title>
+    <style>
+        :root {
+            --tgdd-yellow: #febd10;
+            --tgdd-dark-yellow: #ffd400;
+        }
+
+        body {
+            background-color: #f3f3f3;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Header & Navbar */
+        .bg-custom-yellow { background-color: var(--tgdd-yellow); }
+        
+        .search-input {
+            border-radius: 5px;
+            border: none;
+            padding: 8px 15px;
+        }
+
+        .nav-link {
+            color: #000;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .menu-row {
+            background-color: var(--tgdd-dark-yellow);
+            border-top: 1px solid #e5be00;
+        }
+
+        .nav-menu {
+            display: flex;
+            justify-content: space-between;
+            list-style: none;
+            padding: 10px 0;
+            margin: 0;
+            overflow-x: auto;
+        }
+
+        .nav-menu li a {
+            color: #000;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            white-space: nowrap;
+            padding: 5px 10px;
+        }
+
+        .nav-menu li a:hover {
+            background: #fff;
+            border-radius: 4px;
+        }
+
+        /* Footer Styling */
+        .main-footer {
+            background-color: #fff;
+            margin-top: 30px;
+            padding-top: 20px;
+            font-size: 13px;
+        }
+
+        .tags-cloud a {
+            display: inline-block;
+            margin: 5px;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .tags-cloud a:hover { color: #288ad6; }
+
+        .footer-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding-bottom: 20px;
+        }
+
+        .footer-col h4 {
+            font-size: 15px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .footer-col a {
+            display: block;
+            text-decoration: none;
+            color: #000000;
+            margin-bottom: 5px;
+        }
+
+        .hotline {
+            color: #65a0f8 !important;
+            font-weight: bold;
+        }
+
+        .brand-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            margin: 2px;
+            border-radius: 3px;
+            font-size: 11px;
+            background: #f1f1f1;
+            color: #333;
+        }
+
+        .footer-copyright {
+            background-color: #f1f1f1;
+            padding: 15px 0;
+            font-size: 11px;
+            color: #666;
+        }
+
+        .footer-divider { margin: 20px 0; opacity: 0.1; }
+        /* Banner Apple */
+.promo-banner {
+    background: linear-gradient(90deg, #d40078 10%, #880b52 50%, #d40078 100%);
+    border-radius: 15px;
+    position: relative;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    color: white;
+    overflow: hidden;
+}
+
+.banner-content {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.banner-left .sub-title { font-size: 24px; margin-bottom: 5px; }
+.banner-left .main-title { font-size: 32px; font-weight: bold; }
+.banner-left .apple-logo { font-size: 28px; }
+
+.banner-center img {
+    max-height: 200px;
+    object-fit: contain;
+}
+
+.banner-right { text-align: right; }
+.promo-box {
+    background: white;
+    color: #972264;
+    border-radius: 10px;
+    padding: 10px 20px;
+    display: flex;
+    gap: 15px;
+    margin: 15px 0;
+    align-items: center;
+}
+
+.promo-item { display: flex; flex-direction: column; line-height: 1.2; text-align: center; }
+.promo-item .highlight { font-weight: bold; font-size: 18px; }
+.promo-item .price { font-weight: bold; font-size: 20px; color: #ff0084; }
+
+.btn-close-banner {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: rgba(0,0,0,0.2);
+    border: none;
+    color: white;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+
+/* Tabs Khuyến mãi online */
+.promo-tabs-container {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    overflow: hidden;
+}
+
+.promo-tabs {
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.tab-item {
+    padding: 15px 25px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 14px;
+    border-bottom: 3px solid transparent;
+    transition: 0.3s;
+}
+
+.tab-item:hover { color: #288ad6; }
+
+.tab-item.active {
+    border-bottom: 3px solid #ffd400;
+}
+
+.flash-sale {
+    background: #fff0e6;
+    color: #ff6600;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.promo-green { color: #2eb82e; font-weight: bold; }
+.promo-orange { color: #ff6600; font-weight: bold; }
+
+/* Ẩn thanh cuộn nhưng vẫn cuộn được */
+.promo-tabs::-webkit-scrollbar { display: none; }
+    .keyword-list a:hover {
+        color: #288ad6; /* Màu xanh khi di chuột vào */
+    }
+    /* Container của hệ sinh thái */
+.ecosystem-section 
+{
+    margin-top: 20px;
+}
+/* Hiệu ứng khi di chuột vào */
+.ecosystem-tag:hover {
+    background-color: #e0e0e0;
+}
+/* Màu sắc riêng cho từng thương hiệu hệ sinh thái */
+.b-topzone {
+    background-color: #000 !important;
+    color: #fff !important;
+    border: 1px solid #333;
+}
+
+.b-dmx {
+    background-color: #0056b3 !important;
+    color: #fff !important;
+}
+
+.b-bhx {
+    background-color: #008848 !important;
+    color: #fff !important;
+}
+
+.b-ankhang {
+    background-color: #4ef792 !important;
+    color: #fff !important;
+}
+
+/* Hiệu ứng chung cho các badge khi di chuột qua */
+.brand-badge {
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 4px 10px; /* Tăng kích thước một chút cho đẹp */
+}
+
+.brand-badge:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+/* CSS để định vị nút quay về trang chủ */
+        .back-home {
+            position: fixed; /* Cố định vị trí */
+            bottom: 20px;    /* Cách mép dưới 20px */
+            right: 20px;     /* Cách mép phải 20px */
+            background-color: #333; /* Màu nền */
+            color: white;    /* Màu chữ */
+            padding: 10px 15px;
+            text-decoration: none; /* Bỏ gạch chân */
+            border-radius: 5px;    /* Bo góc */
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+            z-index: 1000;   /* Luôn nằm trên các phần tử khác */
+        }
+
+        .back-home:hover {
+            background-color: #555; /* Đổi màu khi di chuột vào */
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg bg-custom-yellow py-2">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">Thế giới di động</a>
+            
+            <form class="d-flex flex-grow-1 mx-4">
+                <input class="form-control search-input" type="search" placeholder="Bạn tìm gì...">
+            </form>
+
+            <div class="d-flex align-items-center">
+                <a href="#" class="nav-link px-2">Đăng nhập</a>
+                <a href="#" class="nav-link px-2">Giỏ hàng</a>
+                <select class="form-select form-select-sm" style="width: 140px; border: 1px solid #ccc; cursor: pointer;">
+                    <option selected>Hồ Chí Minh</option>
+                    <option value="1">Hà Nội</option>
+                    <option value="2">Đà Nẵng</option>
+                    <option value="3">Cần Thơ</option>
+                    <option value="4">Hải Phòng</option>
+                    <option value="5">An Giang</option>
+                    <option value="6">Bà Rịa - Vũng Tàu</option>
+                    <option value="7">Bắc Giang</option>
+                    <option value="8">Bắc Kạn</option>
+                    <option value="9">Bạc Liêu</option>
+                    <option value="10">Bắc Ninh</option>
+                    <option value="11">Bến Tre</option>
+                    <option value="12">Bình Định</option>
+                    <option value="13">Bình Dương</option>
+                    <option value="14">Bình Phước</option>
+                    <option value="15">Bình Thuận</option>
+                    <option value="16">Cà Mau</option>
+                    <option value="17">Cao Bằng</option>
+                    <option value="18">Đắk Lắk</option>
+                    <option value="19">Đắk Nông</option>
+                    <option value="20">Điện Biên</option>
+                    <option value="21">Đồng Nai</option>
+                    <option value="22">Đồng Tháp</option>
+                    <option value="23">Gia Lai</option>
+                    <option value="24">Hà Giang</option>
+                    <option value="25">Hà Nam</option>
+                    <option value="26">Hà Tĩnh</option>
+                    <option value="27">Hải Dương</option>
+                    <option value="28">Hậu Giang</option>
+                    <option value="29">Hòa Bình</option>
+                    <option value="30">Hưng Yên</option>
+                    <option value="31">Khánh Hòa</option>
+                    <option value="32">Kiên Giang</option>
+                    <option value="33">Kon Tum</option>
+                    <option value="34">Lai Châu</option>
+                </select>
+            </div>
+        </div>
+    </nav>
+
+    <div class="menu-row">
+        <div class="container">
+            <ul class="nav-menu">
+                <li><a href="#">📱 Điện thoại</a></li>
+                <li><a href="#">🧑‍💻 Laptop</a></li>
+                <li><a href="#">🎧 Phụ kiện</a></li>
+                <li><a href="#">⌚ Smartwatch</a></li>
+                <li><a href="#">🕰️ Đồng hồ</a></li>
+                <li><a href="#">📁 Tablet</a></li>
+                <li><a href="#">🔄 Máy cũ</a></li>
+                <li><a href="#">🖨️ Máy in</a></li>
+                <li><a href="#">💳 Sim, Thẻ</a></li>
+                <li><a href="#">🛠️ Dịch vụ</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- Banner Khuyến mãi Apple -->
+<div class="container my-3">
+    <div class="promo-banner">
+        <div class="banner-content">
+            <div class="banner-left">
+                <p class="sub-title">Cơ Hội Tốt</p>
+                <h2 class="main-title">Để chốt một chiếc Apple.</h2>
+                <div class="apple-logo"> Apple</div>
+            </div>
+            <div class="banner-center">
+                <img src="https://vcdn-sohoa.vnecdn.net/2023/09/13/iphone-15-pro-finish-select-202309-6183-1694562470.jpg" alt="Apple Products">
+                <!-- Thay link ảnh sản phẩm thực tế của bạn vào đây -->
+            </div>
+            <div class="banner-right text-white">
+                <p class="sale-title">Giảm sốc đến 9 triệu</p>
+                <div class="promo-box">
+                    <div class="promo-item">
+                        <span class="highlight">0%</span>
+                        <span>lãi suất</span>
+                    </div>
+                    <div class="promo-item border-start ps-3">
+                        <span>Chỉ từ</span>
+                        <span class="price">49<small>K/ngày</small></span>
+                    </div>
+                    <div class="promo-item border-start ps-3">
+                        <span>Thu cũ đổi mới</span>
+                        <span class="highlight">trợ giá đến 2 triệu</span>
+                    </div>
+                </div>
+                <p class="gift-text">Tặng PMH đến 1 triệu mua MacBook, AirPods, Watch</p>
+            </div>
+        </div>
+        <button class="btn-close-banner">✕</button>
+    </div>
+</div>
+
+<!-- Phần Khuyến mãi online -->
+<div class="container mb-4">
+    <h3 class="section-title fw-bold mb-3">Khuyến mãi online</h3>
+    <div class="promo-tabs-container">
+        <div class="promo-tabs">
+            <div class="tab-item active flash-sale">
+                <img src="https://img.icons8.com/color/48/flash-bolt.png" alt="flash"> FLASH SALE
+            </div>
+            <div class="tab-item promo-green">
+                GIẢM ĐẾN 50%++
+            </div>
+            <div class="tab-item promo-orange">
+                ONLINE ONLY GIẢM ĐẾN 50%
+            </div>
+            <div class="tab-item">Điện Thoại</div>
+            <div class="tab-item">Apple</div>
+            <div class="tab-item">Laptop</div>
+            <div class="tab-item">Phụ Kiện</div>
+            <div class="tab-item">Đồng Hồ</div>
+            <div class="tab-item">PC, Máy in</div>
+        </div>
+    </div>
+</div>
+    <div class="container my-5" style="min-height: 300px;">
+        <p class="text-center text-muted">Nội dung sản phẩm sẽ hiển thị tại đây...</p>
+    </div>
+
+    <footer class="main-footer">
+        <div class="footer-tags container">
+            <h3>Mọi người cũng tìm kiếm</h3>
+            <div class="tags-cloud">
+                <a href="#">laptop</a> <a href="#">tai nghe</a> <a href="#">đồng hồ</a> <a href="#">pc</a>
+                <a href="#">macbook</a> <a href="#">dell</a> <a href="#">asus</a> <a href="#">điện thoại xiaomi</a>
+                <a href="#">orient star</a> <a href="#">loa marshall</a> <a href="#">loa jbl</a> <a href="#">đồng hồ movado</a>
+                <a href="#">laptop gaming</a> <a href="#">chuột gaming</a> <a href="#">đồng hồ đôi</a> <a href="#">laptop đồ họa</a>
+                <a href="#">iphone 15</a> <a href="#">iphone 16</a> <a href="#">iphone 17</a> <a href="#">lenovo legion</a>
+                <a href="#">lenovo thinkpad</a> <a href="#">macbook pro m5</a> <a href="#">ipad pro m5</a> <a href="#">asus tuf gaming</a>
+                <a href="#">iphone 17 pro</a> <a href="#">iphone 17 256gb</a> <a href="#">iphone 17 pro max</a> <a href="#">macbook neo</a>
+                <a href="#">jbl charge 5</a> <a href="#">dell g15 5530</a> <a href="#">macbook air m5</a> <a href="#">msi katana 15</a>
+                <a href="#">garmin fenix 8</a> <a href="#">garmin forerunner 55</a> <a href="#">máy lọc nước</a> <a href="#">iPhone 16 Plus</a>
+                <a href="#">iPhone 16 Pro Max</a> <a href="#">iPhone 16e</a> <a href="#">tủ lạnh</a> <a href="#">samsung galaxy s26</a>
+                <a href="#">samsung galaxy s26 plus</a> <a href="#">samsung galaxy s26 ultra</a> <a href="#">iphone 17e</a>
+                <a href="#">điện thoại tecno</a> <a href="#">honor magic v5</a> <a href="#">xiaomi poco f8 pro</a> <a href="#">điện thoại gập</a>
+                <a href="#">samsung s25</a> <a href="#">OPPO Find X9 Ultra</a> <a href="#">OPPO Find X9s</a> <a href="#">Xiaomi 17T</a>
+                <a href="#">Xiaomi 17T Pro</a>
+            </div>
+        </div>
+
+        <hr class="footer-divider container">
+
+        <div class="footer-info container">
+            <div class="footer-col">
+                <h4>Tổng đài hỗ trợ</h4>
+                <p>Gọi mua: <a href="tel:1900232460" class="hotline">1900 232 460 (8:00 - 21:30)</a></p>
+                <p>Khiếu nại: <a href="tel:18001062" class="hotline">1800.1062  (8:00 - 21:30)</a></p>
+                <p>Bảo hành: <a href="tel:1900232464" class="hotline">1900 232 464 (8:00 - 21:00)</a></p>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Về công ty</h4>
+                <a href="#">Giới thiệu công ty</a>
+                <a href="#">Tuyển dụng</a>
+                <a href="#">Gửi góp ý, khiếu nại</a>
+            </div>
+
+            <div class="footer-col">
+                <h4>Thông tin khác</h4>
+                <a href="#">Lịch sử mua hàng</a>
+                <a href="#">Chính sách bảo hành</a>
+                <a href="#">Tìm hiểu mua trả chậm</a>
+            </div>
+
+            <div class="footer-col">
+            <h4>Wedsite cùng tập đoàn</h4>
+            <div class="brands-grid">
+                <span class="brand-badge b-topzone">TopZone</span>
+                <span class="brand-badge b-dmx">Điện máy XANH</span>
+                <span class="brand-badge b-bhx">Bách hóa XANH</span>
+                <span class="brand-badge b-ankhang">Nhà thuốc An Khang</span>
+            </div>
+        </div>
+        </div>
+
+        <div class="footer-copyright">
+            <div class="container text-center">
+                <p>© 2025.NGUYỄN MINH TRÍ-DA25TTC</p>
+                <p>Mssv:110125187</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Nút quay về trang chủ -->
+<a href="trangchu.html" class="back-home">🏠 Về trang chủ</a>
+</body>
+</html>
